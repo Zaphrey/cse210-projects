@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        List<Entry> entries = new List<Entry>();
+        Journal journal = new Journal();
 
         Prompt prompt = new Prompt();
         prompt.AddPrompt("What was the best part of your day?");
@@ -35,52 +35,29 @@ class Program
                 string journalEntry = Console.ReadLine();
 
                 Entry entry = new Entry();
-                entry.AddEntry(randomPrompt, journalEntry);
-                entries.Add(entry);
+                entry._date = DateTime.Now.ToShortDateString();
+                entry._prompt = randomPrompt ;
+                entry._journalEntry = journalEntry;
+            
+                journal.AddEntry(entry);
             }
             else if (option == 2)
             {
-                foreach (Entry entry in entries)
-                {
-                    Console.WriteLine("");
-                    entry.DisplayEntry();
-                }
+                journal.DisplayEntries();
             }
             else if (option == 3)
             {
-                entries = new List<Entry>();
-
                 Console.WriteLine("What is the file name? ");
                 string fileName = Console.ReadLine();
-                string[] lines = File.ReadAllLines(fileName);
-
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split(",");
-
-                    string loadedDate = parts[0];
-                    string loadedPrompt = parts[1];
-                    string loadedEntry = parts[2];
-
-                    Entry entry = new Entry();
-                    entry._date = loadedDate.TrimStart().Replace("\"", "");
-                    entry._prompt = loadedPrompt.TrimStart().Replace("\"", "");
-                    entry._journalEntry = loadedEntry.TrimStart().Replace("\"", "");
-
-                    entries.Add(entry);
-                }
+                
+                journal.LoadEntries(fileName);
             }
             else if (option == 4)
             {
                 Console.WriteLine("What is the file name? ");
                 string fileName = Console.ReadLine();
 
-                using (StreamWriter outputFile = new StreamWriter(fileName))
-                {
-                    foreach (Entry entry in entries){
-                        outputFile.WriteLine($"{entry._date}, \"{entry._prompt}\", \"{entry._journalEntry}\"");
-                    }
-                }
+                journal.SaveEntries(fileName);
             }
         }
     }
