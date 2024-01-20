@@ -30,7 +30,7 @@ class Program
             if (option == 1)
             {
                 Console.WriteLine();
-                    string randomPrompt = prompt.GetRandomPrompt();
+                string randomPrompt = prompt.GetRandomPrompt();
                 Console.WriteLine(randomPrompt);
 
                 string journalEntry = Console.ReadLine();
