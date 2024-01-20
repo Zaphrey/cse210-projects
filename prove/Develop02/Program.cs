@@ -18,7 +18,7 @@ class Program
 
         while (option != 5)
         {
-            Console.WriteLine("Please select one of the following: ");
+            Console.WriteLine("\nPlease select one of the following: ");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
             Console.WriteLine("3. Load");
@@ -29,7 +29,8 @@ class Program
 
             if (option == 1)
             {
-                string randomPrompt = prompt.GetRandomPrompt();
+                Console.WriteLine();
+                    string randomPrompt = prompt.GetRandomPrompt();
                 Console.WriteLine(randomPrompt);
 
                 string journalEntry = Console.ReadLine();
