@@ -9,6 +9,9 @@ class Program
         Fraction fraction3 = new Fraction(5, 4);
         Fraction fraction4 = new Fraction();
 
+        Console.WriteLine(fraction3.GetTop());
+        Console.WriteLine(fraction3.GetBottom());
+
         fraction3.SetTop(3);
 
         fraction4.SetTop(1);
