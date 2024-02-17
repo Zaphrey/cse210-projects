@@ -21,4 +21,14 @@ public abstract class Goal
     {
         return $"{_title} - {_description} | {IsComplete()}";
     }
+
+    public string GetTitle()
+    {
+        return _title;
+    }
+
+    public string GetDescription()
+    {
+        return _description;
+    }
 }
