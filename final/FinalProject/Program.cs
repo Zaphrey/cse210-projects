@@ -31,15 +31,6 @@ class Program
         DailyCalorieTracker calorieTracker = new DailyCalorieTracker();
         DailyMacroTracker macroTracker = new DailyMacroTracker();
 
-        WeightGoal weightGoal = new WeightGoal("Weight Goal", "Lose 20 lbs.", 210, 190);
-        Console.WriteLine(weightGoal.GetStringRepresentation());
-        weightGoal.Log();
-        Console.WriteLine(weightGoal.GetStringRepresentation());
-        weightGoal.Log();
-        Console.WriteLine(weightGoal.GetStringRepresentation());
-        weightGoal.Log();
-        Console.WriteLine(weightGoal.GetStringRepresentation());
-
         OpenMainMenu();
 
         void OpenMainMenu()
