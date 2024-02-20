@@ -19,7 +19,8 @@ public abstract class Goal
 
     public virtual string GetDisplayText()
     {
-        return $"{_title} - {_description} | {IsComplete()}";
+        char mark = IsComplete() ? 'X' : ' ';
+        return $"{_title} - {_description} [{mark}]";
     }
 
     public string GetTitle()

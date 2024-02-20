@@ -11,6 +11,12 @@ public class DailyCalorieTracker : ITracker
         _date = DateTime.Now;
     }
 
+    public DailyCalorieTracker(int calories, DateTime date)
+    {
+        _calories = calories;
+        _date = date;
+    }
+
     public string GetDisplayText()
     {
         return $"Your current calories are at: {_calories}cal";
@@ -27,7 +33,7 @@ public class DailyCalorieTracker : ITracker
     public string GetStringRepresentation()
     {
         string formattedDate = _date.ToShortDateString();
-        return $"CalorieTracker|{formattedDate}|{_calories}";
+        return $"CalorieTracker||{formattedDate}|{_calories}";
     }
 
     public DateTime GetDate()

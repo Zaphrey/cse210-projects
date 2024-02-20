@@ -18,6 +18,7 @@ public class MenuManager
 
     public void DisplayOptions()
     {
+        Console.WriteLine();
         Console.WriteLine(_title);
         int index = 1;
 
@@ -46,11 +47,21 @@ public class MenuManager
                 {
                     return option;
                 }
+                else 
+                {
+                    return -1;
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
+                return -1;
             }
         }
+    }
+
+    public void SetOptions(List<string> options)
+    {
+        _options = options;
     }
 }

@@ -4,20 +4,20 @@ public class WeightGoal : Goal
 {
     private int _startingWeight;
     private int _goalWeight;
-    private List<int> _checkpoints;
+    private int _currentWeight;
 
     public WeightGoal(string title, string description, int startingWeight, int goalWeight) : base(title, description)
     {
         _startingWeight = startingWeight;
         _goalWeight = goalWeight;
-        _checkpoints = new List<int>();
+        _currentWeight = startingWeight;
     }
 
-    public WeightGoal(string title, string description, int startingWeight, int goalWeight, List<int> checkpoints) : base(title, description)
+    public WeightGoal(string title, string description, int startingWeight, int goalWeight, int currentWeight) : base(title, description)
     {
         _startingWeight = startingWeight;
         _goalWeight = goalWeight;
-        _checkpoints = checkpoints;
+        _currentWeight = currentWeight;
     }
 
     public override void Log()
@@ -25,33 +25,35 @@ public class WeightGoal : Goal
         Console.Write("What is your current weight in pounds? ");
         int weight = int.Parse(Console.ReadLine());
         
-        _checkpoints.Add(weight);
+        _currentWeight = weight;
     }
 
     public override string GetStringRepresentation()
     {
-        string initialFormat = $"WeightGoal|{GetTitle()}|{GetDescription()}|{_startingWeight}|{_goalWeight}|{IsComplete()}|";
+        return $"WeightGoal||{GetTitle()}|{GetDescription()}|{_startingWeight}|{_goalWeight}|{_currentWeight}";
+    }
 
-        foreach (int weightCheckpoint in _checkpoints)
-        {
-            initialFormat = $"{initialFormat}{weightCheckpoint}|";
-        }
+    public override string GetDisplayText()
+    {
 
-        return initialFormat;
+
+        string mark = IsComplete() ? "X" : $"{GetPercentage(_currentWeight, _startingWeight, _goalWeight)}%";
+        return $"{GetTitle()} - {GetDescription()} [{mark}]";
     }
 
     public override bool IsComplete()
     {
-        if (_checkpoints.Count > 1)
+        if (_currentWeight <= _goalWeight)
         {
-            int lastWeight = _checkpoints[_checkpoints.Count - 1];
-
-            if (lastWeight <= _goalWeight)
-            {
-                return true;
-            }
+            return true;
         }
 
         return false;
+    }
+
+    //https://stackoverflow.com/questions/38549344/javascript-logic-get-percentage-of-each-number-between-two-numbers
+    static int GetPercentage(int x, int a, int b)
+    {
+        return (int)((double)(x - a) / (b - a) * 100);
     }
 }

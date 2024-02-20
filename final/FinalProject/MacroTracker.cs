@@ -45,7 +45,7 @@ public class DailyMacroTracker : ITracker
     public string GetStringRepresentation()
     {
         string formattedDate = _date.ToShortDateString();
-        return $"MacroTracker|{formattedDate}|{_protein}|{_carbs}|{_fat}";
+        return $"MacroTracker||{formattedDate}|{_protein}|{_carbs}|{_fat}";
     }
     public DateTime GetDate()
     {
